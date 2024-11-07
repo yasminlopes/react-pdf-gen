@@ -1,0 +1,45 @@
+{
+  "name": "data-mimos",
+  "version": "1.0.0",
+  "description": "A library for generating PDFs with specific layouts using React and @react-pdf/renderer",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "build": "tsc && rollup -c",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^4.0.0",
+    "file-saver": "^2.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "rollup": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yasminlopes/data-mimos.git"
+  },
+  "keywords": [
+    "pdf",
+    "react",
+    "pdf generation",
+    "pdf renderer"
+  ],
+  "author": "Yasmin Lopes",
+  "license": "MIT"
+}
