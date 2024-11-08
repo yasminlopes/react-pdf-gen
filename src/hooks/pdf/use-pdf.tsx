@@ -1,34 +1,12 @@
-import React from 'react';
-
 import { saveAs } from 'file-saver';
-import { pdf, PDFDownloadLink } from '@react-pdf/renderer';
+import { pdf } from '@react-pdf/renderer';
 import { usePdfDocumentFactory } from './use-pdf-factory';
-
-type DataType = {
-  [key: string]: any;
-};
-
-interface ExportData {
-  columns: string[];
-  data: DataType[];
-  title?: string;
-  layout: string;
-}
+import { ExportData } from '../../models/export-data';
 
 export function usePdf() {
   const { create } = usePdfDocumentFactory();
 
-  const generatePdfBlob = async ({ columns, data, title, layout }: ExportData) => {
-    try {
-      const PdfDocument = create(columns, data, layout, title);
-     
-      return pdf(<PdfDocument />).toBlob();
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  /* const getLink = async ({ columns, data, title, layout }: ExportData, fileName: string) => {
+   /* const getLink = async ({ columns, data, title, layout }: ExportData, fileName: string) => {
     try {
       const PdfDocument = create(columns, data, layout, title);
       if (!PdfDocument) {
@@ -52,6 +30,15 @@ export function usePdf() {
     }
   }; */
 
+  const generatePdfBlob = async ({ columns, data, title, layout, logoSrc }: ExportData) => {
+    try {
+      const PdfDocument = create(columns, data, layout, title, logoSrc);
+      return pdf(<PdfDocument />).toBlob();
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const save = async (exportData: ExportData, fileName: string) => {
     try {
       const blob = await generatePdfBlob(exportData);
@@ -61,9 +48,9 @@ export function usePdf() {
     }
   };
 
-  const openInNewTab = async ({ columns, data, title, layout }: ExportData) => {
+  const openInNewTab = async (exportData: ExportData) => {
     try {
-      const blob = await generatePdfBlob({ columns, data, title, layout });
+      const blob = await generatePdfBlob(exportData);
       const url = URL.createObjectURL(blob);
       window.open(url, '_blank');
     } catch (error) {
@@ -71,9 +58,9 @@ export function usePdf() {
     }
   };
 
-  const print = async ({ columns, data, title, layout }: ExportData) => {
+  const print = async (exportData: ExportData) => {
     try {
-      const blob = await generatePdfBlob({ columns, data, title, layout });
+      const blob = await generatePdfBlob(exportData);
       const url = URL.createObjectURL(blob);
       const newTab = window.open(url, '_blank');
       newTab.print();
@@ -83,9 +70,8 @@ export function usePdf() {
   };
 
   return {
-    // getLink,
     save,
     openInNewTab,
-    print
+    print,
   };
 }
