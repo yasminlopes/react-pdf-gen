@@ -1,11 +1,4 @@
-import {
-  Link,
-  Page,
-  Text,
-  View,
-  Image,
-  Document,
-} from '@react-pdf/renderer';
+import { Link, Page, Text, View, Image, Document } from '@react-pdf/renderer';
 import { useStyles } from './styles';
 
 interface Props {
@@ -34,11 +27,17 @@ export default function TablePdf({
   const logoImageSrc = logo ? logoSrc || DEFAULT_LOGO : null;
   const styles = useStyles(!!logoImageSrc);
 
+  const isImageUrl = (url: string) => /\.(jpeg|jpg|gif|png)$/.test(url);
+
+  const imageSource = logoImageSrc && isImageUrl(logoImageSrc) ? logoImageSrc : DEFAULT_LOGO;
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          {logoImageSrc && <Image src={logoImageSrc} style={styles.logo} />}
+          {logoImageSrc && isImageUrl(imageSource) && (
+            <Image src={imageSource} style={styles.logo} />
+          )}
           <Text style={styles.h3}>{title}</Text>
           <Text style={styles.body2}>{new Date().toLocaleDateString()}</Text>
         </View>
@@ -63,12 +62,20 @@ export default function TablePdf({
               {Array.isArray(row)
                 ? row.map((cell, cellIndex) => (
                     <View key={cellIndex} style={styles.tableCell_2}>
-                      <Text style={styles.body2}>{cell}</Text>
+                      {isImageUrl(cell) ? (
+                        <Image src={cell} style={{ width: 36, height: 'auto' }} />
+                      ) : (
+                        <Text>{cell}</Text>
+                      )}
                     </View>
                   ))
                 : columns.map((column, cellIndex) => (
                     <View key={cellIndex} style={styles.tableCell_2}>
-                      <Text style={styles.body2}>{row[column]}</Text>
+                      {isImageUrl(row[column]) ? (
+                        <Image src={row[column]} style={{ width: 36, height: 'auto' }} />
+                      ) : (
+                        <Text>{row[column]}</Text>
+                      )}
                     </View>
                   ))}
             </View>
