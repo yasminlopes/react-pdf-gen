@@ -41,5 +41,8 @@
     "pdf renderer"
   ],
   "author": "Yasmin Lopes",
-  "license": "MIT"
+  "license": "MIT",
+  "overrides": {
+    "@react-pdf/layout": "3.6.4"
+  }
 }
