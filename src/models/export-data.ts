@@ -7,5 +7,9 @@ export interface ExportData {
   data: DataType[];
   title?: string;
   layout: string;
+  logo?: boolean;
   logoSrc?: string;
+  footerNote?: string;
+  poweredByText?: string;
+  poweredByLink?: string;
 }

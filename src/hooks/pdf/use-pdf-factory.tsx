@@ -15,7 +15,11 @@ export function usePdfDocumentFactory() {
     data: DataType[],
     layout: string,
     title: string = 'Dados exportados',
-    logoSrc?: string 
+    logo?: boolean,
+    logoSrc?: string,
+    footerNote?: string,
+    poweredByText?: string,
+    poweredByLink?: string,
   ) => {
     const LayoutComponent = layouts[layout];
 
@@ -26,7 +30,11 @@ export function usePdfDocumentFactory() {
         columns={columns}
         data={data}
         title={title}
+        logo={logo}
         logoSrc={logoSrc}
+        footerNote={footerNote}
+        poweredByText={poweredByText}
+        poweredByLink={poweredByLink}
       />
     );
   };
