@@ -18,6 +18,7 @@
   "dependencies": {
     "@react-pdf/layout": "3.6.4",
     "@react-pdf/renderer": "^4.0.0",
+    "@react-pdf/yoga": "^4.1.2",
     "file-saver": "^2.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "tslib": "^2.8.1"
