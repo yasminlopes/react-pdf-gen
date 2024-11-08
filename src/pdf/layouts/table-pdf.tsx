@@ -118,10 +118,10 @@ export default function TablePdf({
   columns,
   data,
   title,
-  logoSrc = 'public/assets/logo.png',
+  logoSrc = '/public/assets/logo.png',
   footerNote = 'Este documento foi gerado automaticamente pelo sistema.',
   poweredByText = 'Datamimos', // nome padrão para Powered by
-  poweredByLink = 'https://www.npmjs.com/package/data-mimos'
+  poweredByLink = 'https://www.npmjs.com/package/react-data-mimos'
 }: TablePdfProps) {
   const styles = useStyles();
 
