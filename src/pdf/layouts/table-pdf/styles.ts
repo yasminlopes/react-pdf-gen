@@ -14,7 +14,7 @@ Font.register({
   ],
 });
 
-export const useStyles = () =>
+export const useStyles = (hasLogo: boolean) =>
   useMemo(
     () =>
       StyleSheet.create({
@@ -22,14 +22,14 @@ export const useStyles = () =>
             width: 120,
             height: 40,
             objectFit: 'contain'
-          },
+    },
         header: {
           marginBottom: 20,
           paddingBottom: 20,
           borderBottomWidth: 1,
           borderColor: '#DFE3E8',
           flexDirection: 'row',
-          justifyContent: 'space-between',
+          justifyContent: hasLogo ? 'space-between' : 'center',
           alignItems: 'center',
         },
         table: {
@@ -42,24 +42,31 @@ export const useStyles = () =>
         },
         tableHeader: {
           backgroundColor: '#F9FAFB',
-          padding: '12px 8px',
+          paddingVertical: 8,
+          paddingHorizontal: 4,
           flexDirection: 'row',
           borderBottomWidth: 1,
           borderColor: '#DFE3E8',
         },
         tableRow: {
-          padding: '10px 8px',
+          paddingVertical: 8,
+          paddingHorizontal: 4,
           flexDirection: 'row',
           borderBottomWidth: 1,
           borderColor: '#DFE3E8',
         },
+        tableCell_1: {
+          flex: 1,
+          padding: 4,
+        },
+        tableCell_2: {
+          flex: 2,
+          padding: 4,
+        },
         col4: { width: '25%' },
         col8: { width: '75%' },
         col6: { width: '50%' },
-        mb4: { marginBottom: 4 },
-        mb8: { marginBottom: 8 },
-        mb40: { marginBottom: 40 },
-        h3: { fontSize: 16, fontWeight: 700 },
+        h3: { fontSize: 16, fontWeight: 700, textAlign: hasLogo ? 'left' : 'center' },
         h4: { fontSize: 13, fontWeight: 700 },
         body1: { fontSize: 10 },
         body2: { fontSize: 9 },
@@ -73,50 +80,21 @@ export const useStyles = () =>
           padding: '40px 24px 120px 24px',
         },
         footer: {
-            left: 0,
-            right: 0,
-            bottom: 0,
-            padding: 24,
-            borderTopWidth: 1,
-            borderStyle: 'solid',
-            position: 'absolute',
-            borderColor: '#DFE3E8',
-            flexDirection: 'row',
-            justifyContent: 'space-between'
-        },
-        gridContainer: {
+          left: 0,
+          right: 0,
+          bottom: 0,
+          padding: 24,
+          borderTopWidth: 1,
+          borderStyle: 'solid',
+          position: 'absolute',
+          borderColor: '#DFE3E8',
           flexDirection: 'row',
           justifyContent: 'space-between',
-        },
-        noBorder: {
-          paddingTop: 8,
-          paddingBottom: 0,
-          borderBottomWidth: 0,
-        },
-        tableCell_1: {
-          flex: 1,
-          padding: 8,
-        },
-        tableCell_2: {
-          flex: 2,
-          paddingRight: 8,
-        },
-        tableCell_3: {
-          flex: 1.5,
-          paddingRight: 8,
-        },
-        tableCell_4: {
-          flex: 1.5,
-          paddingRight: 8,
-        },
-        tableCell_5: {
-          flex: 1.5,
-          paddingRight: 8,
         },
         anchor: {
           textDecoration: 'none',
           color: '#2563EB',
         },
       }),
-    []
+    [hasLogo]
   );

@@ -31,9 +31,8 @@ export default function TablePdf({
   poweredByText = 'Datamimos',
   poweredByLink = 'https://www.npmjs.com/package/react-data-mimos',
 }: Props) {
-  const styles = useStyles();
-
   const logoImageSrc = logo ? logoSrc || DEFAULT_LOGO : null;
+  const styles = useStyles(!!logoImageSrc);
 
   return (
     <Document>
