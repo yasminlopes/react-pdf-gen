@@ -1,5 +1,2 @@
 export { usePdf } from './hooks/pdf/use-pdf';
-
-export { usePdfDocumentFactory } from './hooks/pdf/use-pdf-factory';
-
-export { default as TablePdf } from './pdf/layouts/table-pdf/table-pdf';
+export type { ExportData } from './models/export-data';
