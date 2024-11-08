@@ -46,9 +46,6 @@ export default function TablePdf({
 
         <View style={styles.table}>
           <View style={styles.tableHeader}>
-            <View style={styles.tableCell_1}>
-              <Text style={styles.subtitle2}>#</Text>
-            </View>
             {columns.map((column, index) => (
               <View key={index} style={styles.tableCell_2}>
                 <Text style={styles.subtitle2}>{column}</Text>
@@ -64,9 +61,6 @@ export default function TablePdf({
                 rowIndex === data.length - 1 && { borderBottomWidth: 0 },
               ]}
             >
-              <View style={styles.tableCell_1}>
-                <Text style={styles.body2}>{rowIndex + 1}</Text>
-              </View>
               {Array.isArray(row)
                 ? row.map((cell, cellIndex) => (
                     <View key={cellIndex} style={styles.tableCell_2}>
