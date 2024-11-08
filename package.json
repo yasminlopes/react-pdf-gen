@@ -16,7 +16,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@react-pdf/layout": "^4.0.0",
+    "@react-pdf/layout": "3.6.4",
     "@react-pdf/renderer": "^4.0.0",
     "file-saver": "^2.0.0",
     "react": "^18.0.0 || ^19.0.0",
@@ -42,8 +42,5 @@
     "pdf renderer"
   ],
   "author": "Yasmin Lopes",
-  "license": "MIT",
-  "overrides": {
-    "@react-pdf/layout": "3.6.4"
-  }
+  "license": "MIT"
 }
