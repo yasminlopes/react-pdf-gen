@@ -22,7 +22,7 @@ export default function TablePdf({
   logoSrc,
   footerNote = 'Este documento foi gerado automaticamente pelo sistema.',
   poweredByText = 'Datamimos',
-  poweredByLink = 'https://www.npmjs.com/package/react-data-mimos',
+  poweredByLink = 'https://www.npmjs.com/package/react-pdf-gen',
 }: Props) {
   const logoImageSrc = logo ? logoSrc || DEFAULT_LOGO : null;
   const styles = useStyles(!!logoImageSrc);
