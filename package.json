@@ -1,6 +1,6 @@
 {
   "name": "react-pdf-gen",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "description": "A library for generating PDFs with specific layouts using React and @react-pdf/renderer",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -16,8 +16,9 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@react-pdf/layout": "^4.0.0",
+    "@react-pdf/layout": "3.6.4",
     "@react-pdf/renderer": "^4.0.0",
+    "@react-pdf/yoga": "^4.1.2",
     "file-saver": "^2.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "tslib": "^2.8.1"
