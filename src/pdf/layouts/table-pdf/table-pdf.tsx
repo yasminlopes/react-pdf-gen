@@ -35,7 +35,7 @@ export default function TablePdf({
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          {logoImageSrc && isImageUrl(imageSource) && (
+          {logoImageSrc && (
             <Image src={imageSource} style={styles.logo} />
           )}
           <Text style={styles.h3}>{title}</Text>
