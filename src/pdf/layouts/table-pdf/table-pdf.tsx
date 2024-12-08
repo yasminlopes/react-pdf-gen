@@ -1,5 +1,8 @@
 import { Link, Page, Text, View, Image, Document } from '@react-pdf/renderer';
 import { useStyles } from './styles';
+// import logoImage from '../../../assets/logo.png';
+import { getBase64Image } from '../../../utils/get-base64';
+import { isImageUrl } from '../../../utils/image';
 
 interface Props {
   title: string;
@@ -12,31 +15,40 @@ interface Props {
   poweredByLink?: string;
 }
 
-const DEFAULT_LOGO = '/assets/logo.png';
+const DEFAULT_LOGO = '../../../assets/logo.png'
 
-export default function TablePdf({
+export default async function TablePdf({
   columns,
   data,
   title,
   logo = true,
   logoSrc,
   footerNote = 'Este documento foi gerado automaticamente pelo sistema.',
-  poweredByText = 'Datamimos',
+  poweredByText = 'PDFGen',
   poweredByLink = 'https://www.npmjs.com/package/react-pdf-gen',
 }: Props) {
-  const logoImageSrc = logo ? logoSrc || DEFAULT_LOGO : null;
+  // Logo Image: tenta pegar a imagem em Base64, ou usa o logo padrão
+  let logoImageSrc = null;
+
+  // Se o logo for true e logoSrc for passado (como URL ou caminho relativo)
+  if (logo && logoSrc) {
+    if (isImageUrl(logoSrc)) {
+      logoImageSrc = await getBase64Image(logoSrc);  // Se for uma URL, converte para Base64
+    } else {
+      logoImageSrc = logoSrc;  // Caso contrário, usa o caminho relativo diretamente
+    }
+  } else if (logo) {
+    logoImageSrc = DEFAULT_LOGO;  // Se logoSrc não for passado, usa o logo padrão
+  }
+
   const styles = useStyles(!!logoImageSrc);
-
-  const isImageUrl = (url: string) => /\.(jpeg|jpg|gif|png)$/.test(url);
-
-  const imageSource = logoImageSrc && isImageUrl(logoImageSrc) ? logoImageSrc : DEFAULT_LOGO;
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           {logoImageSrc && (
-            <Image src={imageSource} style={styles.logo} />
+            <Image src={logoImageSrc} style={styles.logo} />
           )}
           <Text style={styles.h3}>{title}</Text>
           <Text style={styles.body2}>{new Date().toLocaleDateString()}</Text>
@@ -99,3 +111,5 @@ export default function TablePdf({
     </Document>
   );
 }
+
+
