@@ -1,8 +1,10 @@
 import TablePdf from '../../pdf/layouts/table-pdf/table-pdf';
+import PostPdf from '../../pdf/layouts/post-pdf/post-pdf';
 import { DataType } from '../../models/export-data';
 
 const layouts = {
   'table': TablePdf,
+  'post': PostPdf,
 };
 
 /**
