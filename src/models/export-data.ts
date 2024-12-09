@@ -3,8 +3,8 @@ export type DataType = {
 };
 
 export interface ExportData {
-  columns: string[];
-  data: DataType[];
+  columns?: string[];
+  data?: DataType[];
   title?: string;
   subtitle?: string;
   description?: string;

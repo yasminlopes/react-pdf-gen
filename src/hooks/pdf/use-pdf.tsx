@@ -6,59 +6,9 @@ import { ExportData } from '../../models/export-data';
 export function usePdf() {
   const { create } = usePdfDocumentFactory();
 
-  /* const getLink = async ({ columns, data, title, layout }: ExportData, fileName: string) => {
+  const generatePdfBlob = async (exportData: ExportData) => {
     try {
-      const PdfDocument = create(columns, data, layout, title);
-      if (!PdfDocument) {
-        throw new Error('PdfDocument is undefined');
-      }
-      return (
-        <PDFDownloadLink
-          document={<PdfDocument />}
-          fileName={`registradora-io_${fileName}.pdf`}
-        >
-          {({ blob, url, loading, error }) => (
-            <React.Fragment>
-              {loading ? 'Carregando...' : 'Baixar PDF'}
-            </React.Fragment>
-          )}
-        </PDFDownloadLink>
-      );
-    } catch (error) {
-      console.error('Error generating PDF link:', error);
-      throw error;
-    }
-  }; */
-
-  const generatePdfBlob = async ({
-    columns,
-    data,
-    title,
-    layout,
-    logoSrc,
-    logo,
-    footerNote,
-    poweredByLink,
-    poweredByText,
-    subtitle,
-    description,
-    imageSrc,
-  }: ExportData) => {
-    try {
-      const PdfDocument = create(
-        columns,
-        data,
-        layout,
-        title,
-        logo,
-        logoSrc,
-        footerNote,
-        poweredByLink,
-        poweredByText,
-        subtitle,
-        description,
-        imageSrc
-      );
+      const PdfDocument = create(exportData);
       return pdf(<PdfDocument />).toBlob();
     } catch (error) {
       throw error;

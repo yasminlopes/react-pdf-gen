@@ -1,6 +1,6 @@
 import TablePdf from '../../pdf/layouts/table-pdf/table-pdf';
 import PostPdf from '../../pdf/layouts/post-pdf/post-pdf';
-import { DataType } from '../../models/export-data';
+import { ExportData } from '../../models/export-data';
 
 const layouts = {
   'table': TablePdf,
@@ -12,39 +12,13 @@ const layouts = {
  * Utiliza o padrão Factory Method para criar o documento, para facilitar a criação de novos layouts
  */
 export function usePdfDocumentFactory() {
-  const create = (
-    columns: string[],
-    data: DataType[],
-    layout: string,
-    title: string = 'Dados exportados',
-    logo?: boolean,
-    logoSrc?: string,
-    footerNote?: string,
-    poweredByText?: string,
-    poweredByLink?: string,
-    subtitle?: string,
-    description?: string,
-    imageSrc?: string,
-  ) => {
+  const create = (exportData: ExportData) => {
+    const { layout, ...props } = exportData;
     const LayoutComponent = layouts[layout];
 
     if (!LayoutComponent) throw new Error(`Layout desconhecido: ${layout}`);
 
-    return () => (
-      <LayoutComponent
-        columns={columns}
-        data={data}
-        title={title}
-        logo={logo}
-        logoSrc={logoSrc}
-        footerNote={footerNote}
-        poweredByText={poweredByText}
-        poweredByLink={poweredByLink}
-        subtitle={subtitle}
-        description={description}
-        imageSrc={imageSrc}
-      />
-    );
+    return () => <LayoutComponent {...props} />;
   };
 
   return { create };

@@ -79,4 +79,9 @@ export const useStyles = (hasLogo: boolean) =>
       fontSize: 12,
       marginBottom: 24,
     },
+    image: {
+      width: '100%',
+      height: 'auto',
+      marginBottom: 24,
+    },
   });
