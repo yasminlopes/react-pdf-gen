@@ -40,6 +40,9 @@ export function usePdf() {
     footerNote,
     poweredByLink,
     poweredByText,
+    subtitle,
+    description,
+    imageSrc,
   }: ExportData) => {
     try {
       const PdfDocument = create(
@@ -51,7 +54,10 @@ export function usePdf() {
         logoSrc,
         footerNote,
         poweredByLink,
-        poweredByText
+        poweredByText,
+        subtitle,
+        description,
+        imageSrc
       );
       return pdf(<PdfDocument />).toBlob();
     } catch (error) {

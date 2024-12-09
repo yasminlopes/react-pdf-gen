@@ -22,6 +22,9 @@ export function usePdfDocumentFactory() {
     footerNote?: string,
     poweredByText?: string,
     poweredByLink?: string,
+    subtitle?: string,
+    description?: string,
+    imageSrc?: string,
   ) => {
     const LayoutComponent = layouts[layout];
 
@@ -37,6 +40,9 @@ export function usePdfDocumentFactory() {
         footerNote={footerNote}
         poweredByText={poweredByText}
         poweredByLink={poweredByLink}
+        subtitle={subtitle}
+        description={description}
+        imageSrc={imageSrc}
       />
     );
   };

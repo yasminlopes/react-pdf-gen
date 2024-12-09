@@ -1,9 +1,11 @@
-
 import { Link, Page, Text, View, Image, Document } from '@react-pdf/renderer';
 import { useStyles } from './styles';
 
 interface Props {
   title: string;
+  subtitle: string;
+  description: string;
+  imageSrc: string;
   columns: string[];
   data: Array<string[] | Record<string, string>>;
   logo?: boolean;
@@ -16,13 +18,16 @@ interface Props {
 const DEFAULT_LOGO = '/assets/logo.png';
 
 export default function PostPdf({
+  title,
+  subtitle,
+  description,
+  imageSrc,
   columns,
   data,
-  title,
   logo = true,
   logoSrc,
   footerNote = 'Este documento foi gerado automaticamente pelo sistema.',
-  poweredByText = 'Datamimos',
+  poweredByText = 'React PDF Gen',
   poweredByLink = 'https://www.npmjs.com/package/react-pdf-gen',
 }: Props) {
   const logoImageSrc = logo ? logoSrc || DEFAULT_LOGO : null;
@@ -40,9 +45,11 @@ export default function PostPdf({
             <Image src={imageSource} style={styles.logo} />
           )}
           <Text style={styles.h3}>{title}</Text>
-          <Text style={styles.body2}>{new Date().toLocaleDateString()}</Text>
         </View>
-
+        <Text style={styles.subtitle}>{subtitle}</Text>
+        <Image src={imageSrc} style={styles.logo} />
+        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.body2}>{new Date().toLocaleDateString()}</Text>
         <View style={styles.content}>
           {data.map((row, rowIndex) => (
             <View key={rowIndex} style={styles.postRow}>

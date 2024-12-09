@@ -70,4 +70,13 @@ export const useStyles = (hasLogo: boolean) =>
       color: '#007bff',
       textDecoration: 'none',
     },
+    subtitle: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      marginBottom: 12,
+    },
+    description: {
+      fontSize: 12,
+      marginBottom: 24,
+    },
   });
