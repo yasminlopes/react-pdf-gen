@@ -50,7 +50,7 @@ export const useStyles = (hasLogo: boolean) =>
     footer: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-start',
       borderTopWidth: 1,
       borderTopColor: '#ccc',
       paddingTop: 12,
@@ -76,6 +76,7 @@ export const useStyles = (hasLogo: boolean) =>
       fontSize: 14,
       fontWeight: 'bold',
       marginBottom: 12,
+      color: '#888',
     },
     description: {
       fontSize: 12,

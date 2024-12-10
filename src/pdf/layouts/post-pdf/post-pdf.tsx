@@ -30,7 +30,7 @@ const PostPdf = ({
 
   const renderLogo = () => {
     if (!logo) return null;
-    const isImageUrl = (url: string) => /\.(jpeg|jpg|gif|png)$/.test(url);
+    const isImageUrl = (url: string) => /\.(jpeg|jpg|gif|png|base64)$/.test(url); 
     const imageSource = logoSrc && isImageUrl(logoSrc) ? logoSrc : DEFAULT_LOGO;
     return <Image src={imageSource} style={styles.logo} />;
   };
@@ -81,13 +81,7 @@ const PostPdf = ({
         <Text style={styles.h3}>{title}</Text>
         <Text style={styles.subtitle}>{subtitle}</Text>
         {renderContent()}
-        {!imageSrc && (
-          <Text style={styles.description}>
-            {description.split('\n').map((line, index) => (
-              <Text key={index}>{line}{'\n'}</Text>
-            ))}
-          </Text>
-        )}
+        {!imageSrc && renderContent()}
         {renderFooter()}
       </Page>
     </Document>
