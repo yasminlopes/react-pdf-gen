@@ -60,7 +60,12 @@ const PostPdf = ({
       return (
         <Text style={styles.description}>
           {description.split('\n').map((line, index) => (
-            <Text key={index}>{line}{'\n'}</Text>
+            <Text key={index}>
+              {line.split(' ').map((word, i) => (
+                <Text key={i}>{word}{' '}</Text>
+              ))}
+              {'\n'}
+            </Text>
           ))}
         </Text>
       );
@@ -83,7 +88,6 @@ const PostPdf = ({
             ))}
           </Text>
         )}
-        <Text style={styles.body2}>{new Date().toLocaleDateString()}</Text>
         {renderFooter()}
       </Page>
     </Document>
