@@ -5,7 +5,7 @@ interface Props {
   title: string;
   subtitle: string;
   description: string;
-  imageSrc: string;
+  imageSrc?: string;
   logo?: boolean;
   logoSrc?: string;
   footerNote?: string;
@@ -53,16 +53,36 @@ const PostPdf = ({
     );
   };
 
+  const renderContent = () => {
+    if (imageSrc) {
+      return <Image src={imageSrc} style={styles.image} />;
+    } else {
+      return (
+        <Text style={styles.description}>
+          {description.split('\n').map((line, index) => (
+            <Text key={index}>{line}{'\n'}</Text>
+          ))}
+        </Text>
+      );
+    }
+  };
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           {renderLogo()}
-          <Text style={styles.h3}>{title}</Text>
         </View>
+        <Text style={styles.h3}>{title}</Text>
         <Text style={styles.subtitle}>{subtitle}</Text>
-        <Image src={imageSrc} style={styles.image} />
-        <Text style={styles.description}>{description}</Text>
+        {renderContent()}
+        {!imageSrc && (
+          <Text style={styles.description}>
+            {description.split('\n').map((line, index) => (
+              <Text key={index}>{line}{'\n'}</Text>
+            ))}
+          </Text>
+        )}
         <Text style={styles.body2}>{new Date().toLocaleDateString()}</Text>
         {renderFooter()}
       </Page>

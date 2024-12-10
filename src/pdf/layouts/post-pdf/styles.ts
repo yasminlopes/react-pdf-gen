@@ -7,11 +7,12 @@ export const useStyles = (hasLogo: boolean) =>
       fontFamily: 'Helvetica',
       fontSize: 12,
       lineHeight: 1.5,
+      textAlign: 'center',
     },
     header: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       alignItems: 'center',
       marginBottom: 24,
     },
@@ -22,6 +23,7 @@ export const useStyles = (hasLogo: boolean) =>
     h3: {
       fontSize: 18,
       fontWeight: 'bold',
+      marginBottom: 12,
     },
     body2: {
       fontSize: 10,
